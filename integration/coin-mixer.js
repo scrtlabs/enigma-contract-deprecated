@@ -19,7 +19,8 @@ Enigma.setNetwork (1);
 const EnigmaToken = contract (EnigmaTokenContract);
 const CoinMixer = contract (CoinMixerContract);
 
-const url = process.env.GANACHE_URL || 'http://localhost:8545';
+const argv = require('minimist')(process.argv.slice(2));
+const url = argv.url || 'http://localhost:8545';
 const provider = new Web3.providers.HttpProvider (url);
 const web3 = new Web3 (provider);
 
