@@ -149,7 +149,7 @@ contract CoinMixer {
         _;
     }
 
-    function distribute(uint dealId, address[] destAddresses)
+    function distribute(uint32 dealId, address[] destAddresses)
     public
         //    onlyEnigma() //TODO: enable after testing
     returns (ReturnValue){
