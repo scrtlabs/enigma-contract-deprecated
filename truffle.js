@@ -9,7 +9,7 @@ module.exports = {
     networks: {
         development: {
             host: 'localhost',
-            port: 9545,
+            port: 8545,
             network_id: '1' // Match any network id
         },
         // This network section is needed for travis-ci, do not remove

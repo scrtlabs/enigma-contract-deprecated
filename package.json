@@ -13,7 +13,10 @@
     "url": "https://github.com/enigmampc/enigma-contract/issues"
   },
   "homepage": "https://enigma.co",
-  "dependencies": {},
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "lodash": "^4.17.10"
+  },
   "devDependencies": {
     "buffer": "^5.1.0",
     "babel-polyfill": "^6.26.0",
