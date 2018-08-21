@@ -53,7 +53,7 @@ contract MillionairesProblem {
 		return (names, netWorths); 
 	}
 
-	function getRichestAddress() public view returns (bytes32) {
+	function getRichestName() public view returns (bytes32) {
 		return richestMillionaire; 
 	}
 	
@@ -66,7 +66,7 @@ contract MillionairesProblem {
 	}
 
 	// CALLBACK FUNCTION to change contract state tracking richest millionaire's name
-	function setRichestAddress(bytes32 _name) public onlyEnigma() {
+	function setRichestName(bytes32 _name) public onlyEnigma() {
 		richestMillionaire = _name; 
 	}
 }

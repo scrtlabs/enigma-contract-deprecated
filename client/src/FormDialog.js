@@ -9,7 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 const engUtils = require("./lib/enigma-utils");
 
 const CALLABLE = "computeRichest(bytes32[2],uint[2])";
-const CALLBACK = "setRichestAddress(bytes32)";
+const CALLBACK = "setRichestName(bytes32)";
 const ENG_FEE = 1;
 const GAS = 4712388;
 
@@ -34,9 +34,11 @@ class FormDialog extends Component {
 
   async handleSubmit() {
     this.props.onSetMessage("Stating net worth...please wait 15-20 seconds");
-    console.log(this.state.netWorth); 
-    const encryptedNetWorth = getEncryptedNetWorth(parseInt(this.state.netWorth));
-    console.log(encryptedNetWorth); 
+    console.log(this.state.netWorth);
+    const encryptedNetWorth = getEncryptedNetWorth(
+      parseInt(this.state.netWorth)
+    );
+    console.log(encryptedNetWorth);
     await this.props.MillionairesProblem.stateNetWorth(
       this.state.name,
       encryptedNetWorth,
@@ -82,9 +84,8 @@ class FormDialog extends Component {
       "Computing richest millionaire...please wait 15-20 seconds"
     );
     this.enigmaTask();
-    console.log("task completed"); 
-    this.props.onSetMessage(""); 
-    console.log("modal removed")
+    this.props.onSetMessage("");
+    this.props.onGetRichestName();
   }
 
   setName = event => {

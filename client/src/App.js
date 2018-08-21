@@ -34,10 +34,12 @@ class App extends Component {
       message: "",
       numMillionaires: 0,
       millionaireOneName: "",
-      millionaireTwoName: ""
+      millionaireTwoName: "",
+      richestName: null
     };
     this.setMessage = this.setMessage.bind(this);
     this.setMillionaire = this.setMillionaire.bind(this);
+    this.getRichestName = this.getRichestName.bind(this);
   }
 
   componentDidMount = async () => {
@@ -133,6 +135,11 @@ class App extends Component {
     });
   }
 
+  async getRichestName() {
+    let richestName = this.state.MillionairesProblem.getRichestName.call();
+    this.setState({ richestName });
+  }
+
   async createNewMillionairesProblem() {
     this.setState({ message: "Creating new millionaires' problem" });
     await this.state.MillionairesProblemFactory.createNewMillionairesProblem({
@@ -151,7 +158,8 @@ class App extends Component {
       millionaireOneName: "",
       millionaireTwoName: "",
       numMillionaires: 0,
-      message: ""
+      message: "",
+      richestName: null
     });
   }
 
@@ -188,7 +196,11 @@ class App extends Component {
               <h1>Number of Millionaires: {this.state.numMillionaires}</h1>
               <h2>Millionaire One: {this.state.millionaireOneName}</h2>
               <h2>Millionaire Two: {this.state.millionaireTwoName}</h2>
-
+              {this.state.richestName == null ? (
+                <h2>Richest Millionaire: TBD</h2>
+              ) : (
+                <h2>Richest Millionaire: {this.state.richestName}</h2>
+              )}
               <FormDialog
                 accounts={this.state.accounts}
                 web3={this.state.web3}
@@ -196,6 +208,7 @@ class App extends Component {
                 MillionairesProblem={this.state.MillionairesProblem}
                 onSetMessage={this.setMessage}
                 onSetMillionaire={this.setMillionaire}
+                onGetRichestName={this.getRichestName}
                 numMillionaires={this.state.numMillionaires}
               />
               <SimpleModalWrapped message={this.state.message} />
