@@ -79,8 +79,10 @@ class FormDialog extends Component {
     this.props.onSetMessage(
       "Computing richest millionaire...please wait 15-20 seconds"
     );
-    this.enigmaTask();
+    await this.enigmaTask();
+    console.log("task completed"); 
     this.props.onSetMessage(""); 
+    console.log("modal removed"); 
   }
 
   setName = event => {
