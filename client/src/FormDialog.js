@@ -80,6 +80,7 @@ class FormDialog extends Component {
       "Computing richest millionaire...please wait 15-20 seconds"
     );
     this.enigmaTask();
+    this.props.onSetMessage(""); 
   }
 
   setName = event => {
