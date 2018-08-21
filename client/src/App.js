@@ -136,7 +136,7 @@ class App extends Component {
   }
 
   async getRichestName() {
-    let richestName = this.state.MillionairesProblem.getRichestName.call();
+    let richestName = await this.state.MillionairesProblem.getRichestName.call();
     console.log(richestName);
     this.setState({ richestName });
   }
@@ -173,21 +173,29 @@ class App extends Component {
         </div>
       );
       return <div>Loading Web3, accounts, and contract...</div>;
-    }
-    if (this.state.accounts.length < 1) {
+    } else if (this.state.accounts.length < 1) {
       return (
         <div className="App">
           <Header web3={this.state.web3} accounts={this.state.accounts} />
           <Message color="red">No accounts in place...</Message>
         </div>
       );
+    } else if (this.state.MillionaireProblem == null) {
+      return (
+        <div className="App">
+          <Header
+            web3={this.state.web3}
+            accounts={this.state.accounts}
+            onCreateNewMillionaresProblem={() => {
+              this.createNewMillionairesProblem();
+            }}
+          />
+          <Message color="red">
+            Please create a new Millionaires' Problem
+          </Message>
+        </div>
+      );
     } else {
-      let richestNameHeading =
-        this.state.richestName == null ? (
-          <h2>Richest Millionaire: TBD</h2>
-        ) : (
-          <h2>Richest Millionaire: {this.state.richestName}</h2>
-        );
       return (
         <div className="App">
           <Header
@@ -203,7 +211,11 @@ class App extends Component {
               <h1>Number of Millionaires: {this.state.numMillionaires}</h1>
               <h2>Millionaire One: {this.state.millionaireOneName}</h2>
               <h2>Millionaire Two: {this.state.millionaireTwoName}</h2>
-              {richestNameHeading}
+              {this.state.richestName == null ? (
+                <h2>Richest Millionaire: TBD</h2>
+              ) : (
+                <h2>Richest Millionaire: {this.state.richestName}</h2>
+              )}
               <FormDialog
                 accounts={this.state.accounts}
                 web3={this.state.web3}
