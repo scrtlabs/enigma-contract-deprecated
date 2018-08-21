@@ -180,7 +180,7 @@ class App extends Component {
           <Message color="red">No accounts in place...</Message>
         </div>
       );
-    } else if (this.state.MillionaireProblem == null) {
+    } else if (this.state.MillionairesProblem == null) {
       return (
         <div className="App">
           <Header
