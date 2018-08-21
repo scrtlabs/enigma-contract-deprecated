@@ -65,14 +65,18 @@ class FormDialog extends Component {
     );
     let resultFee = await task.approveFee({
       from: this.props.accounts[0],
-      gas: "1000000"
+      gas: GAS
     });
     let result = await task.compute({
       from: this.props.accounts[0],
-      gas: "1000000"
+      gas: GAS
     });
     console.log("got tx:", result.tx, "for task:", task.taskId, "");
     console.log("mined on block:", result.receipt.blockNumber);
+    for (let i = 0; i < result.logs.length; i++) {
+      let log = result.logs[i];
+      console.log(log);
+    }
   }
 
   handleCheckRichest() {
