@@ -57,6 +57,8 @@ class FormDialog extends Component {
    */
   async enigmaTask() {
     let millionaires = await this.props.MillionairesProblem.getMillionaires.call();
+    console.log(millionaires);
+    console.log(millionaires[0]);
     let blockNumber = await this.props.web3.eth.getBlockNumber();
     let task = await this.props.enigma.createTask(
       blockNumber,
