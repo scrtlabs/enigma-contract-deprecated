@@ -81,11 +81,11 @@ class FormDialog extends Component {
     console.log("mined on block:", result.receipt.blockNumber);
   }
 
-  handleCheckRichest() {
+  async handleCheckRichest() {
     this.props.onSetMessage(
       "Computing richest millionaire...please wait 15-20 seconds"
     );
-    this.enigmaTask();
+    await this.enigmaTask();
     this.props.onSetMessage("");
     this.props.onGetRichestName();
   }

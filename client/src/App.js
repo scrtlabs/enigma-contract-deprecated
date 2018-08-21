@@ -214,7 +214,10 @@ class App extends Component {
               {this.state.richestName == null ? (
                 <h2>Richest Millionaire: TBD</h2>
               ) : (
-                <h2>Richest Millionaire: {this.state.richestName}</h2>
+                <h2>
+                  Richest Millionaire:{" "}
+                  {this.state.web3.toUtf8(this.state.richestName)}
+                </h2>
               )}
               <FormDialog
                 accounts={this.state.accounts}
