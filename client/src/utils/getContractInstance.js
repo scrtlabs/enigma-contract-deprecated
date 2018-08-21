@@ -6,7 +6,7 @@ const getContractInstance = async (
   address = null
 ) => {
   const contract = getContract(contractDefinition);
-  contract.setNetwork(2);
+  contract.setNetwork(1);
   contract.setProvider(web3.currentProvider);
 
   // Dirty hack for web3@1.0.0 support for localhost testrpc.
