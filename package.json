@@ -15,7 +15,8 @@
   "homepage": "https://enigma.co",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "lodash": "^4.17.10"
+    "lodash": "^4.17.10",
+    "bn.js": "^4.11.8"
   },
   "devDependencies": {
     "buffer": "^5.1.0",
@@ -29,6 +30,7 @@
     "truffle-contract": "^3.0.6",
     "web3": "^1.0.0-beta.34",
     "web3-utils": "1.0.0-beta.34",
-    "rlp": "2.1.0"
+    "rlp": "2.1.0",
+    "openzeppelin-solidity": "^1.11.0"
   }
 }
