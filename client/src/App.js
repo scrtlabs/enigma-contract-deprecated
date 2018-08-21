@@ -181,6 +181,12 @@ class App extends Component {
         </div>
       );
     } else {
+      let richestNameHeading =
+        this.state.richestName == null ? (
+          <h2>Richest Millionaire: TBD</h2>
+        ) : (
+          <h2>Richest Millionaire: {this.state.richestName}</h2>
+        );
       return (
         <div className="App">
           <Header
@@ -196,11 +202,7 @@ class App extends Component {
               <h1>Number of Millionaires: {this.state.numMillionaires}</h1>
               <h2>Millionaire One: {this.state.millionaireOneName}</h2>
               <h2>Millionaire Two: {this.state.millionaireTwoName}</h2>
-              {this.state.richestName == null ? (
-                <h2>Richest Millionaire: TBD</h2>
-              ) : (
-                <h2>Richest Millionaire: {this.state.richestName}</h2>
-              )}
+              {richestNameHeading}
               <FormDialog
                 accounts={this.state.accounts}
                 web3={this.state.web3}
