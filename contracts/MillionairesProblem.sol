@@ -7,7 +7,7 @@ contract MillionairesProblem {
 	// Millionaire struct containing name and netWorth properties
 	struct Millionaire {
 		address name; 
-		bytes netWorth; 
+		bytes32 netWorth; 
 	}
 
 	uint public numMillionaires; 
@@ -34,7 +34,7 @@ contract MillionairesProblem {
     }
 
     // Function to send millionaire's name and encrypted net worth to contract storage
-	function stateNetWorth(address _name, bytes _netWorth) public maxMillionaires() {
+	function stateNetWorth(address _name, bytes32 _netWorth) public maxMillionaires() {
 		Millionaire storage currentMillionaire = millionaires[numMillionaires]; 
 		currentMillionaire.name = _name; 
 		currentMillionaire.netWorth = _netWorth; 
@@ -42,9 +42,9 @@ contract MillionairesProblem {
 	}
 
 	// Function to return tuple of lists containing millionaire names and encrypted net worths
-	function getMillionaires() public view returns (address[2], bytes[2]) {
+	function getMillionaires() public view returns (address[2], bytes32[2]) {
 		address[2] memory names; 
-		bytes[2] memory netWorths; 
+		bytes32[2] memory netWorths; 
 		for (uint i = 0; i < numMillionaires; i++) {
 			Millionaire memory currentMillionaire = millionaires[i]; 
 			names[i] = currentMillionaire.name; 
