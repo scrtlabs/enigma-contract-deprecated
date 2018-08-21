@@ -87,7 +87,7 @@ class FormDialog extends Component {
     );
     await this.enigmaTask();
     this.props.onSetMessage("");
-    this.props.onGetRichestName();
+    await this.props.onGetRichestName();
   }
 
   setName = event => {
