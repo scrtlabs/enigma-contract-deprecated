@@ -65,18 +65,14 @@ class FormDialog extends Component {
     );
     let resultFee = await task.approveFee({
       from: this.props.accounts[0],
-      gas: GAS
+      gas: "1000000"
     });
     let result = await task.compute({
       from: this.props.accounts[0],
-      gas: GAS
+      gas: "1000000"
     });
     console.log("got tx:", result.tx, "for task:", task.taskId, "");
     console.log("mined on block:", result.receipt.blockNumber);
-    for (let i = 0; i < result.logs.length; i++) {
-      let log = result.logs[i];
-      console.log(log);
-    }
   }
 
   handleCheckRichest() {
@@ -86,7 +82,7 @@ class FormDialog extends Component {
     await this.enigmaTask();
     console.log("task completed"); 
     this.props.onSetMessage(""); 
-    console.log("modal removed"); 
+    console.log("modal removed")
   }
 
   setName = event => {
