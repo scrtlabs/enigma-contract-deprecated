@@ -8,7 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 const engUtils = require("./lib/enigma-utils");
 
-const CALLABLE = "computeRichest(bytes32[2],bytes32[2])";
+const CALLABLE = "computeRichest(bytes32[2],uint[2])";
 const CALLBACK = "setRichestAddress(bytes32)";
 const ENG_FEE = 1;
 const GAS = 4712388;
@@ -90,7 +90,7 @@ class FormDialog extends Component {
   };
 
   setEncryptedNetWorth = event => {
-    this.setState({ netWorth: event.target.value });
+    this.setState({ netWorth: parseInt(event.target.value) });
   };
 
   render() {
