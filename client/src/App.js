@@ -137,6 +137,7 @@ class App extends Component {
 
   async getRichestName() {
     let richestName = this.state.MillionairesProblem.getRichestName.call();
+    console.log(richestName);
     this.setState({ richestName });
   }
 
