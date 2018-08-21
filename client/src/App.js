@@ -138,7 +138,6 @@ class App extends Component {
   async getRichestName() {
     let richestName = await this.state.MillionairesProblem.getRichestName.call();
     console.log(richestName);
-    console.log(this.state.web3);
     this.setState({ richestName });
   }
 
@@ -217,7 +216,7 @@ class App extends Component {
               ) : (
                 <h2>
                   Richest Millionaire:{" "}
-                  {this.state.web3.utils.toAscii(this.state.richestName)}
+                  {this.state.web3.utils.hexToAscii(this.state.richestName)}
                 </h2>
               )}
               <FormDialog
