@@ -38,7 +38,7 @@ class FormDialog extends Component {
       parseInt(this.state.netWorth)
     );
     await this.props.MillionairesProblem.stateNetWorth(
-      this.state.name,
+      this.props.web3.utils.asciiToHex(this.state.name),
       encryptedNetWorth,
       { from: this.props.accounts[0], gas: "1000000" }
     );
