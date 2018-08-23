@@ -10,7 +10,7 @@ const data = require("../test/data");
 module.exports = function(deployer) {
     return deployer
         .then(() => {
-            return deployer.deploy(EnigmaToken);
+            return deployer.deploy(EnigmaToken, { overwrite: false });
         })
         .then(() => {
             return web3.eth.getAccounts();
@@ -19,7 +19,9 @@ module.exports = function(deployer) {
             // Setting the principal node to the first signer address in the data file
             const principal = data.principal[0];
             console.log("using account", principal, "as principal signer");
-            return deployer.deploy(Enigma, EnigmaToken.address, principal);
+            return deployer.deploy(Enigma, EnigmaToken.address, principal, {
+                overwrite: false
+            });
         })
         .then(() => {
             return deployer.deploy(MillionairesProblemFactory, Enigma.address);
