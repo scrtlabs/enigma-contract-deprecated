@@ -11,7 +11,7 @@ contract MillionairesProblem {
 	}
 
 	uint public numMillionaires; 
-	Millionaire[2] public millionaires; 
+	Millionaire[] public millionaires; 
 	address public richestMillionaire; 
 	address public owner;
 	Enigma public enigma;
@@ -21,12 +21,6 @@ contract MillionairesProblem {
 		enigma = Enigma(_enigmaAddress);
 	}
 
-	// Max of two millionaires in any comparison
-	modifier maxMillionaires() {
-		require(numMillionaires < 2); 
-		_; 
-	} 
-
 	// Modifier to ensure only enigma contract can call function
 	modifier onlyEnigma() {
         require(msg.sender == address(enigma));
@@ -34,7 +28,7 @@ contract MillionairesProblem {
     }
 
     // Function to send millionaire's name and encrypted net worth to contract storage
-	function stateNetWorth(bytes32 _name, bytes32 _netWorth) public maxMillionaires() {
+	function stateNetWorth(bytes32 _name, bytes32 _netWorth) public () {
 		Millionaire storage currentMillionaire = millionaires[numMillionaires]; 
 		currentMillionaire.name = _name; 
 		currentMillionaire.netWorth = _netWorth; 
@@ -42,9 +36,9 @@ contract MillionairesProblem {
 	}
 
 	// Function to return tuple of lists containing millionaire names and encrypted net worths
-	function getMillionaires() public view returns (bytes32[2], bytes32[2]) {
-		bytes32[2] memory names; 
-		bytes32[2] memory netWorths; 
+	function getMillionaires() public view returns (bytes32[], bytes32[]) {
+		bytes32[] memory names = new bytes32[](numMillionaires); 
+		bytes32[] memory netWorths = new bytes32[](numMillionaires); 
 		for (uint i = 0; i < numMillionaires; i++) {
 			Millionaire memory currentMillionaire = millionaires[i]; 
 			names[i] = currentMillionaire.name; 
@@ -58,7 +52,7 @@ contract MillionairesProblem {
 	}
 	
 	// CALLABLE FUNCTION run in SGX to decipher encrypted net worths to determine richest millionaire
-	function computeRichest(address[2] _names, uint[2] _netWorths) public pure returns (address) {
+	function computeRichest(address[] _names, uint[] _netWorths) public pure returns (address) {
 		if (_netWorths[1] >= _netWorths[0]) {
 			return _names[1]; 
 		}
