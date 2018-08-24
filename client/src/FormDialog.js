@@ -37,6 +37,8 @@ class FormDialog extends Component {
     const encryptedName = getEncryptedValue(
       this.props.web3.utils.asciiToHex(this.state.name)
     );
+    console.log(this.props.web3.utils.asciiToHex(this.state.name));
+    console.log(encryptedName);
     const encryptedNetWorth = getEncryptedValue(parseInt(this.state.netWorth));
     await this.props.MillionairesProblem.stateNetWorth(
       encryptedName,
