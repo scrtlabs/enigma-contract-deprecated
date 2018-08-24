@@ -29,9 +29,11 @@ contract MillionairesProblem {
 
     // Function to send millionaire's name and encrypted net worth to contract storage
 	function stateNetWorth(bytes32 _name, bytes32 _netWorth) public {
-		Millionaire storage currentMillionaire = millionaires[numMillionaires]; 
-		currentMillionaire.name = _name; 
-		currentMillionaire.netWorth = _netWorth; 
+		Millionaire memory millionaire = Millionaire({
+			name: _name, 
+			netWorth: _netWorth
+		}); 
+		millionaires.push(millionaire); 
 		numMillionaires++; 
 	}
 
