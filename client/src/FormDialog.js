@@ -8,7 +8,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 const engUtils = require("./lib/enigma-utils");
 
-const CALLABLE = "computeRichest(address[2],uint[2])";
+const CALLABLE = "computeRichest(address[],uint[])";
 const CALLBACK = "setRichestName(address)";
 const ENG_FEE = 1;
 const GAS = 4712388;
