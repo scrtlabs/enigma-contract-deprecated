@@ -57,7 +57,7 @@ contract MillionairesProblem {
 	function computeRichest(address[] _names, uint[] _netWorths) public pure returns (address) {
 		uint maxIndex = 0; 
 		uint maxValue = 0; 
-		for(uint i = 0; i < numMillionaires; i++) {
+		for(uint i = 0; i < _netWorths.length; i++) {
 			if (_netWorths[i] >= maxValue) {
 				maxValue = _netWorths[i]; 
 				maxIndex = i; 
