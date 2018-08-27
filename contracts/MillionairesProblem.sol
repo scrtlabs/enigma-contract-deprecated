@@ -55,10 +55,15 @@ contract MillionairesProblem {
 	
 	// CALLABLE FUNCTION run in SGX to decipher encrypted net worths to determine richest millionaire
 	function computeRichest(address[] _names, uint[] _netWorths) public pure returns (address) {
-		if (_netWorths[1] >= _netWorths[0]) {
-			return _names[1]; 
+		uint maxIndex = 0; 
+		uint maxValue = 0; 
+		for(uint i = 0; i < numMillionaires; i++) {
+			if (_netWorths[i] >= maxValue) {
+				maxValue = _netWorths[i]; 
+				maxIndex = i; 
+			}
 		}
-		return _names[0]; 
+		return _names[maxIndex]; 
 	}
 
 	// CALLBACK FUNCTION to change contract state tracking richest millionaire's name

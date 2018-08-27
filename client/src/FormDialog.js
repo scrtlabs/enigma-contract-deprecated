@@ -34,11 +34,7 @@ class FormDialog extends Component {
 
   async handleSubmit() {
     this.props.onSetMessage("Stating net worth...please wait 15-20 seconds");
-    const encryptedName = getEncryptedValue(
-      this.props.web3.utils.asciiToHex(this.state.name)
-    );
-    console.log(this.props.web3.utils.asciiToHex(this.state.name));
-    console.log(encryptedName);
+    const encryptedName = getEncryptedValue(this.state.name);
     const encryptedNetWorth = getEncryptedValue(parseInt(this.state.netWorth));
     await this.props.MillionairesProblem.stateNetWorth(
       encryptedName,
