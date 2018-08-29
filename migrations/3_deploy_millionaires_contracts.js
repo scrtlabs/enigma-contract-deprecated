@@ -1,5 +1,3 @@
-const EnigmaToken = artifacts.require("EnigmaToken.sol");
-const Enigma = artifacts.require("Enigma.sol");
 const MillionairesProblemFactory = artifacts.require(
 	"MillionairesProblemFactory.sol"
 );
