@@ -11,7 +11,7 @@ import { Container, Message } from "semantic-ui-react";
 import Header from "./Header";
 import Home from "./Home";
 import SimpleModalWrapped from "./SimpleModalWrapped";
-import FormDialog from "./FormDialog";
+import MillionairesProblemWrapper from "./MillionairesProblemWrapper";
 import Paper from "@material-ui/core/Paper";
 import "./App.css";
 
@@ -31,15 +31,9 @@ class App extends Component {
       MillionairesProblem: null,
       enigma: null,
       principal: null,
-      message: "",
-      numMillionaires: 0,
-      millionaireOneName: "",
-      millionaireTwoName: "",
-      richestName: null
+      message: ""
     };
     this.setMessage = this.setMessage.bind(this);
-    this.setMillionaire = this.setMillionaire.bind(this);
-    this.getRichestName = this.getRichestName.bind(this);
   }
 
   componentDidMount = async () => {
@@ -61,7 +55,6 @@ class App extends Component {
         web3,
         millionairesProblemFactoryContract
       );
-
       const millionairesProblems = await MillionairesProblemFactory.getMillionairesProblems.call();
       if (millionairesProblems.length != 0) {
         const MillionairesProblem = await getContractInstance(
@@ -69,24 +62,8 @@ class App extends Component {
           millionairesProblemContract,
           millionairesProblems[millionairesProblems.length - 1]
         );
-        const millionairesInfo = await MillionairesProblem.getMillionaires.call();
-        const millionaireNames = millionairesInfo[0];
-        const millionaireEncryptedNetWorths = millionairesInfo[1];
-        const numMillionaires = await MillionairesProblem.numMillionaires.call();
-        const numMillionairesNumber = numMillionaires.toNumber();
-        if (numMillionairesNumber == 2) {
-          this.setState({
-            millionaireOneName: web3.utils.toUtf8(millionaireNames[0]),
-            millionaireTwoName: web3.utils.toUtf8(millionaireNames[1])
-          });
-        } else if (numMillionairesNumber == 1) {
-          this.setState({
-            millionaireOneName: web3.utils.toUtf8(millionaireNames[0])
-          });
-        }
         this.setState({
-          MillionairesProblem,
-          numMillionaires: numMillionairesNumber
+          MillionairesProblem
         });
       }
 
@@ -125,22 +102,6 @@ class App extends Component {
     this.setState({ message });
   }
 
-  setMillionaire(name) {
-    this.state.numMillionaires == 0
-      ? this.setState({ millionaireOneName: name })
-      : this.setState({ millionaireTwoName: name });
-    this.setState({
-      numMillionaires: this.state.numMillionaires + 1,
-      message: ""
-    });
-  }
-
-  async getRichestName() {
-    let richestName = await this.state.MillionairesProblem.getRichestName.call();
-    console.log(richestName);
-    this.setState({ richestName });
-  }
-
   async createNewMillionairesProblem() {
     this.setState({ message: "Creating new millionaires' problem" });
     await this.state.MillionairesProblemFactory.createNewMillionairesProblem({
@@ -156,11 +117,7 @@ class App extends Component {
     );
     this.setState({
       MillionairesProblem,
-      millionaireOneName: "",
-      millionaireTwoName: "",
-      numMillionaires: 0,
-      message: "",
-      richestName: null
+      message: ""
     });
   }
 
@@ -208,26 +165,12 @@ class App extends Component {
           <br />
           <Container>
             <Paper>
-              <h1>Number of Millionaires: {this.state.numMillionaires}</h1>
-              <h2>Millionaire One: {this.state.millionaireOneName}</h2>
-              <h2>Millionaire Two: {this.state.millionaireTwoName}</h2>
-              {this.state.richestName == null ? (
-                <h2>Richest Millionaire: TBD</h2>
-              ) : (
-                <h2>
-                  Richest Millionaire:{" "}
-                  {this.state.web3.utils.hexToAscii(this.state.richestName)}
-                </h2>
-              )}
-              <FormDialog
+              <MillionairesProblemWrapper
                 accounts={this.state.accounts}
                 web3={this.state.web3}
                 enigma={this.state.enigma}
                 MillionairesProblem={this.state.MillionairesProblem}
                 onSetMessage={this.setMessage}
-                onSetMillionaire={this.setMillionaire}
-                onGetRichestName={this.getRichestName}
-                numMillionaires={this.state.numMillionaires}
               />
               <SimpleModalWrapped message={this.state.message} />
             </Paper>

@@ -1,10 +1,5 @@
 const EnigmaToken = artifacts.require("EnigmaToken.sol");
 const Enigma = artifacts.require("Enigma.sol");
-const CoinMixer = artifacts.require("CoinMixer.sol");
-const Billionare = artifacts.require("Billionare.sol");
-const MillionairesProblemFactory = artifacts.require(
-    "MillionairesProblemFactory.sol"
-);
 const data = require("../test/data");
 
 module.exports = function(deployer) {
@@ -24,12 +19,6 @@ module.exports = function(deployer) {
             });
         })
         .then(() => {
-            return deployer.deploy(MillionairesProblemFactory, Enigma.address);
-        })
-        .then(() => {
-            return deployer.deploy(CoinMixer, Enigma.address);
-        })
-        .then(() => {
-            return deployer.deploy(Billionare);
+            console.log(Enigma.address);
         });
 };
