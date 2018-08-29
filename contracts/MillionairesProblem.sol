@@ -4,17 +4,25 @@ pragma solidity ^0.4.17;
 import "./Enigma.sol";
 
 contract MillionairesProblem {
+	// Stores number of millionaires that have joined and stated their net worths
 	uint public numMillionaires; 
+
+	// Stores Millionaire structs (defined below)
 	Millionaire[] millionaires; 
+
+	// Stores address of richest millionaire, will be set in callback function below
 	address public richestMillionaire; 
+
 	address public owner;
 	Enigma public enigma;
 
+	// Millionaire struct which holds encrypted address and net worth
 	struct Millionaire {
 		bytes myAddress; 
 		bytes myNetWorth; 
 	}
 
+	// Event to be emitted upon callback completion that will be watched from front end
 	event CallbackFinished(); 
 
 	// Modifier to ensure only enigma contract can call function
@@ -23,11 +31,13 @@ contract MillionairesProblem {
         _;
     }
 
+    // Constructor called when new contract is deployed
 	constructor(address _enigmaAddress, address _owner) public {
 		owner = _owner; 
 		enigma = Enigma(_enigmaAddress);
 	}
 
+	// Function to add a new millionaire with encrypted address and net worth arguments
     function addMillionaire(bytes _encryptedAddress, bytes _encryptedNetWorth) public {
     	Millionaire memory millionaire = Millionaire({
     		myAddress: _encryptedAddress, 
@@ -37,16 +47,13 @@ contract MillionairesProblem {
     	numMillionaires++; 
     }
 
+    // Return encrypted address and net worth for a particular millionaire
     function getInfoForMillionaire(uint index) public view returns (bytes, bytes) {
     	Millionaire memory millionaire = millionaires[index]; 
     	bytes memory encryptedAddress = millionaire.myAddress; 
     	bytes memory encryptedNetWorth = millionaire.myNetWorth; 
     	return (encryptedAddress, encryptedNetWorth); 
     }
-
-	function getRichestAddress() public view returns (address) {
-		return richestMillionaire; 
-	}
 	
 	// CALLABLE FUNCTION run in SGX to decipher encrypted net worths to determine richest millionaire
 	function computeRichest(address[] _addresses, uint[] _netWorths) public pure returns (address) {
