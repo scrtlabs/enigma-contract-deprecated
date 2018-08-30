@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import getWeb3 from "./utils/getWeb3";
-import getAccounts from "./utils/getAccounts";
 import getContractInstance from "./utils/getContractInstance";
 import enigmaContractDefinition from "./contracts/Enigma.json";
 import enigmaTokenContractDefinition from "./contracts/EnigmaToken.json";
-import millionairesProblemFactoryContract from "./contracts/MillionairesProblemFactory.json";
-import millionairesProblemContract from "./contracts/MillionairesProblem.json";
+import millionairesProblemFactoryContractDefinition from "./contracts/MillionairesProblemFactory.json";
+import millionairesProblemContractDefinition from "./contracts/MillionairesProblem.json";
 import { Switch, Route, NavLink, BrowserRouter } from "react-router-dom";
 import { Container, Message } from "semantic-ui-react";
 import Header from "./Header";
@@ -42,7 +41,7 @@ class App extends Component {
       const web3 = await getWeb3();
 
       // Use web3 to get the user's accounts.
-      const accounts = await getAccounts(web3);
+      const accounts = await web3.eth.getAccounts();
 
       // Get the deployed instances
 
@@ -53,13 +52,15 @@ class App extends Component {
       );
       const MillionairesProblemFactory = await getContractInstance(
         web3,
-        millionairesProblemFactoryContract
+        millionairesProblemFactoryContractDefinition
       );
-      const millionairesProblems = await MillionairesProblemFactory.getMillionairesProblems.call();
+      const millionairesProblems = await MillionairesProblemFactory.methods
+        .getMillionairesProblems()
+        .call();
       if (millionairesProblems.length != 0) {
         const MillionairesProblem = await getContractInstance(
           web3,
-          millionairesProblemContract,
+          millionairesProblemContractDefinition,
           millionairesProblems[millionairesProblems.length - 1]
         );
         this.setState({
@@ -70,16 +71,16 @@ class App extends Component {
       const enigma = new eng.Enigma(Enigma, EnigmaToken);
       const principal = new testUtils.Principal(Enigma, accounts[9]);
       const resultRegister = await principal.register();
-      const eventRegister = resultRegister.logs[0];
-      if (!eventRegister.args._success) {
+      const eventRegister = resultRegister.events.Register.returnValues;
+      if (!eventRegister._success) {
         throw "Unable to register worker";
       }
       const resultWP = await principal.setWorkersParams();
-      const eventWP = resultWP.logs[0];
-      if (!eventWP.args._success) {
+      const eventWP = resultWP.events.WorkersParameterized.returnValues;
+      if (!eventWP._success) {
         throw "Unable to set worker params";
       }
-      console.log("network using random seed:", eventWP.args.seed.toNumber());
+      console.log("network using random seed:", eventWP.seed);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -104,15 +105,19 @@ class App extends Component {
 
   async createNewMillionairesProblem() {
     this.setState({ message: "Creating new millionaires' problem" });
-    await this.state.MillionairesProblemFactory.createNewMillionairesProblem({
-      from: this.state.accounts[0],
-      gas: GAS
-    });
+    await this.state.MillionairesProblemFactory.methods
+      .createNewMillionairesProblem()
+      .send({
+        from: this.state.accounts[0],
+        gas: GAS
+      });
 
-    const millionairesProblems = await this.state.MillionairesProblemFactory.getMillionairesProblems.call();
+    const millionairesProblems = await this.state.MillionairesProblemFactory.methods
+      .getMillionairesProblems()
+      .call();
     const MillionairesProblem = await getContractInstance(
       this.state.web3,
-      millionairesProblemContract,
+      millionairesProblemContractDefinition,
       millionairesProblems[millionairesProblems.length - 1]
     );
     this.setState({

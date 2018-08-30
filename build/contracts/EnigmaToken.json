@@ -331,7 +331,7 @@
         "id": 1972,
         "nodeType": "ImportDirective",
         "scope": 2083,
-        "sourceUnit": 2975,
+        "sourceUnit": 2967,
         "src": "25:71:3",
         "symbolAliases": [],
         "unitAlias": ""
@@ -345,10 +345,10 @@
               "id": 1973,
               "name": "StandardToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2974,
+              "referencedDeclaration": 2966,
               "src": "621:13:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_StandardToken_$2974",
+                "typeIdentifier": "t_contract$_StandardToken_$2966",
                 "typeString": "contract StandardToken"
               }
             },
@@ -358,10 +358,10 @@
           }
         ],
         "contractDependencies": [
-          2652,
-          2695,
-          2727,
-          2974
+          2644,
+          2687,
+          2719,
+          2966
         ],
         "contractKind": "contract",
         "documentation": "@title Enigma Token\n@dev ERC20 Enigma Token (ENG)\n * ENG Tokens are divisible by 1e8 (100,000,000) base\nunits referred to as 'Grains'.\n * ENG are displayed using 8 decimal places of precision.\n * 1 ENG is equivalent to:\n  100000000 == 1 * 10**8 == 1e8 == One Hundred Million Grains\n * 150 million ENG (total supply) is equivalent to:\n  15000000000000000 == 150000000 * 10**8 == 1e17\n * All initial ENG Grains are assigned to the creator of\nthis contract.\n ",
@@ -369,10 +369,10 @@
         "id": 2082,
         "linearizedBaseContracts": [
           2082,
-          2974,
-          2652,
-          2695,
-          2727
+          2966,
+          2644,
+          2687,
+          2719
         ],
         "name": "EnigmaToken",
         "nodeType": "ContractDefinition",
@@ -719,7 +719,7 @@
                         "name": "balances",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2569,
+                        "referencedDeclaration": 2561,
                         "src": "1352:8:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
@@ -735,7 +735,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2989,
+                          "referencedDeclaration": 2981,
                           "src": "1361:3:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -822,7 +822,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2989,
+                          "referencedDeclaration": 2981,
                           "src": "1474:3:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -876,7 +876,7 @@
                       "name": "Transfer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2726,
+                      "referencedDeclaration": 2718,
                       "src": "1460:8:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -984,7 +984,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "1776:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -998,7 +998,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2639,
+                      "referencedDeclaration": 2631,
                       "src": "1776:14:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -1130,7 +1130,7 @@
             "scope": 2082,
             "src": "1690:120:3",
             "stateMutability": "nonpayable",
-            "superFunction": 2639,
+            "superFunction": 2631,
             "visibility": "public"
           },
           {
@@ -1204,7 +1204,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "2215:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -1218,7 +1218,7 @@
                       "lValueRequested": false,
                       "memberName": "transferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2827,
+                      "referencedDeclaration": 2819,
                       "src": "2215:18:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -1376,7 +1376,7 @@
             "scope": 2082,
             "src": "2110:150:3",
             "stateMutability": "nonpayable",
-            "superFunction": 2827,
+            "superFunction": 2819,
             "visibility": "public"
           },
           {
@@ -1433,7 +1433,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "2606:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -1447,7 +1447,7 @@
                       "lValueRequested": false,
                       "memberName": "approve",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2855,
+                      "referencedDeclaration": 2847,
                       "src": "2606:13:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -1579,7 +1579,7 @@
             "scope": 2082,
             "src": "2516:128:3",
             "stateMutability": "nonpayable",
-            "superFunction": 2855,
+            "superFunction": 2847,
             "visibility": "public"
           },
           {
@@ -1636,7 +1636,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "2750:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -1650,7 +1650,7 @@
                       "lValueRequested": false,
                       "memberName": "allowance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2871,
+                      "referencedDeclaration": 2863,
                       "src": "2750:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_address_$returns$_t_uint256_$",
@@ -1782,7 +1782,7 @@
             "scope": 2082,
             "src": "2650:139:3",
             "stateMutability": "view",
-            "superFunction": 2871,
+            "superFunction": 2863,
             "visibility": "public"
           }
         ],
@@ -1819,7 +1819,7 @@
         "id": 1972,
         "nodeType": "ImportDirective",
         "scope": 2083,
-        "sourceUnit": 2975,
+        "sourceUnit": 2967,
         "src": "25:71:3",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1833,10 +1833,10 @@
               "id": 1973,
               "name": "StandardToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 2974,
+              "referencedDeclaration": 2966,
               "src": "621:13:3",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_StandardToken_$2974",
+                "typeIdentifier": "t_contract$_StandardToken_$2966",
                 "typeString": "contract StandardToken"
               }
             },
@@ -1846,10 +1846,10 @@
           }
         ],
         "contractDependencies": [
-          2652,
-          2695,
-          2727,
-          2974
+          2644,
+          2687,
+          2719,
+          2966
         ],
         "contractKind": "contract",
         "documentation": "@title Enigma Token\n@dev ERC20 Enigma Token (ENG)\n * ENG Tokens are divisible by 1e8 (100,000,000) base\nunits referred to as 'Grains'.\n * ENG are displayed using 8 decimal places of precision.\n * 1 ENG is equivalent to:\n  100000000 == 1 * 10**8 == 1e8 == One Hundred Million Grains\n * 150 million ENG (total supply) is equivalent to:\n  15000000000000000 == 150000000 * 10**8 == 1e17\n * All initial ENG Grains are assigned to the creator of\nthis contract.\n ",
@@ -1857,10 +1857,10 @@
         "id": 2082,
         "linearizedBaseContracts": [
           2082,
-          2974,
-          2652,
-          2695,
-          2727
+          2966,
+          2644,
+          2687,
+          2719
         ],
         "name": "EnigmaToken",
         "nodeType": "ContractDefinition",
@@ -2207,7 +2207,7 @@
                         "name": "balances",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2569,
+                        "referencedDeclaration": 2561,
                         "src": "1352:8:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
@@ -2223,7 +2223,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2989,
+                          "referencedDeclaration": 2981,
                           "src": "1361:3:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2310,7 +2310,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2989,
+                          "referencedDeclaration": 2981,
                           "src": "1474:3:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -2364,7 +2364,7 @@
                       "name": "Transfer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2726,
+                      "referencedDeclaration": 2718,
                       "src": "1460:8:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
@@ -2472,7 +2472,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "1776:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -2486,7 +2486,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2639,
+                      "referencedDeclaration": 2631,
                       "src": "1776:14:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -2618,7 +2618,7 @@
             "scope": 2082,
             "src": "1690:120:3",
             "stateMutability": "nonpayable",
-            "superFunction": 2639,
+            "superFunction": 2631,
             "visibility": "public"
           },
           {
@@ -2692,7 +2692,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "2215:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -2706,7 +2706,7 @@
                       "lValueRequested": false,
                       "memberName": "transferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2827,
+                      "referencedDeclaration": 2819,
                       "src": "2215:18:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -2864,7 +2864,7 @@
             "scope": 2082,
             "src": "2110:150:3",
             "stateMutability": "nonpayable",
-            "superFunction": 2827,
+            "superFunction": 2819,
             "visibility": "public"
           },
           {
@@ -2921,7 +2921,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "2606:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -2935,7 +2935,7 @@
                       "lValueRequested": false,
                       "memberName": "approve",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2855,
+                      "referencedDeclaration": 2847,
                       "src": "2606:13:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -3067,7 +3067,7 @@
             "scope": 2082,
             "src": "2516:128:3",
             "stateMutability": "nonpayable",
-            "superFunction": 2855,
+            "superFunction": 2847,
             "visibility": "public"
           },
           {
@@ -3124,7 +3124,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3025,
+                        "referencedDeclaration": 3017,
                         "src": "2750:5:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_EnigmaToken_$2082",
@@ -3138,7 +3138,7 @@
                       "lValueRequested": false,
                       "memberName": "allowance",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2871,
+                      "referencedDeclaration": 2863,
                       "src": "2750:15:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_view$_t_address_$_t_address_$returns$_t_uint256_$",
@@ -3270,7 +3270,7 @@
             "scope": 2082,
             "src": "2650:139:3",
             "stateMutability": "view",
-            "superFunction": 2871,
+            "superFunction": 2863,
             "visibility": "public"
           }
         ],
@@ -3285,13 +3285,13 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {
-    "1535572405827": {
+    "1535647390073": {
       "events": {},
       "links": {},
-      "address": "0x7cDe0a758bcACF5B2921dF331E389CA1187056E5",
+      "address": "0xE596470cE93Dff6463C96E79f0Aa4B891B1A0Bc3",
       "transactionHash": "0x09dc3375fd63f5e8e2dd442584bd72c3e50f21eae34a4a77a5aef762462ee095"
     }
   },
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-08-29T19:58:38.226Z"
+  "updatedAt": "2018-08-30T16:43:29.844Z"
 }

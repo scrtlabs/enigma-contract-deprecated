@@ -76,8 +76,8 @@ class Task {
             callableArgs: this.callableArgs,
             callback: this.callable,
             preprocessors: this.preprocessors,
-            contract: this._contract.address,
-            tokenContract: this._tokenContract.address,
+            contract: this._contract.options.address,
+            tokenContract: this._tokenContract.options.address,
             fee: this.fee.toNumber(),
             worker: {
                 signer: this._worker.signer,
@@ -123,18 +123,19 @@ class Task {
      * @returns {*}
      */
     static approveFee(tokenContract, contract, fee, options) {
-        return tokenContract.balanceOf(options.from).then(balance => {
-            if (balance <= fee) {
-                throw new Error(
-                    "Not enough ENG tokens to approve the computation fee."
-                );
-            }
-            return tokenContract.approve(
-                contract.address,
-                fee.toNumber(),
-                options
-            );
-        });
+        return tokenContract.methods
+            .balanceOf(options.from)
+            .call()
+            .then(balance => {
+                if (balance <= fee) {
+                    throw new Error(
+                        "Not enough ENG tokens to approve the computation fee."
+                    );
+                }
+                return tokenContract.methods
+                    .approve(contract.options.address, fee.toNumber())
+                    .send(options);
+            });
     }
 
     /**
@@ -195,24 +196,26 @@ class Task {
                     this._worker.verified.err
             );
         }
-        return this._tokenContract
-            .allowance(options.from, this._contract.address)
+        return this._tokenContract.methods
+            .allowance(options.from, this._contract.options.address)
+            .call()
             .then(allowance => {
                 if (this.fee > allowance) {
                     throw new Error(
                         "The computation fee has not been allowed yet"
                     );
                 }
-                return this._contract.compute(
-                    this.dappContractAddress,
-                    this.callable,
-                    this.callableArgs,
-                    this.callback,
-                    this.fee.toNumber(),
-                    this.preprocessors,
-                    this.blockNumber.toNumber(),
-                    options
-                );
+                return this._contract.methods
+                    .compute(
+                        this.dappContractAddress,
+                        this.callable,
+                        this.callableArgs,
+                        this.callback,
+                        this.fee.toNumber(),
+                        this.preprocessors,
+                        this.blockNumber.toNumber()
+                    )
+                    .send(options);
             });
     }
 }
@@ -241,8 +244,9 @@ class Enigma {
      */
     _getWorkersParams(blockNumber) {
         // TODO: since the parameters only change every epoch, consider caching
-        return this.contract
+        return this.contract.methods
             .getWorkersParams(blockNumber.toNumber())
+            .call()
             .then(result => {
                 // Populate the cache with updated results
                 return {
@@ -279,7 +283,7 @@ class Enigma {
                 if (custodian in this.workers) {
                     return Promise.resolve(this.workers[custodian]);
                 } else {
-                    return this.contract.getReport(custodian);
+                    return this.contract.methods.getReport(custodian).call();
                 }
             })
             .then(worker => {
@@ -342,14 +346,12 @@ class Enigma {
         } catch (e) {
             return Promise.reject("Invalid block number: " + e.message);
         }
-
         let _fee;
         try {
             _fee = web3Utils.isBN(fee) ? fee : web3Utils.toBN(fee);
         } catch (e) {
             return Promise.reject("Invalid fee: " + e.message);
         }
-
         let taskId;
         try {
             taskId = engUtils.generateTaskId(
