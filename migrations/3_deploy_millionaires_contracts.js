@@ -1,14 +1,30 @@
-var fs = require('fs');
+const http = require('http');
 const MillionairesProblemFactory = artifacts.require(
-  "MillionairesProblemFactory.sol"
+    "MillionairesProblemFactory.sol"
 );
 
+
 module.exports = function(deployer) {
-    return deployer.then(() => {
-          var enigmaAddress = fs.readFileSync('enigmacontract.txt', 'utf8');
-          return deployer.deploy(
-            MillionairesProblemFactory,
-            enigmaAddress
-          );
-    })
+    return deployer
+        .then(() => {
+            return new Promise((resolve, reject) => {
+                const request = http.get('http://localhost:8081', response => {
+                    if (response.statusCode < 200 || response.statusCode > 299) {
+                        reject(new Error('Failed to load page, status code: ' + response.statusCode));
+                    }
+                    const body = [];
+                    response.on('data', (chunk) => body.push(chunk));
+                    response.on('end', () => resolve(body.join('')));
+                });
+                request.on('error', (err) => reject(err))
+            })
+        })
+        .then(enigmaAddress => {
+            console.log('Got Enigma Contract address: ' + enigmaAddress)
+            return deployer.deploy(
+                MillionairesProblemFactory,
+                enigmaAddress
+            );
+        })
+        .catch((err) => console.error(err));
 };
