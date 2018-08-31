@@ -85,7 +85,7 @@ class Principal {
         const report = engUtils.encodeReport (
             this.params[1],
             this.params[2],
-            this.params[3],
+            this.params[3]
         );
         // Using the same artificial data for all workers
         return this.contract.register (
