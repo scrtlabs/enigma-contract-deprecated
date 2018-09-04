@@ -16,7 +16,7 @@ before_script:
 script:
   - rm -rf build
   - darq-truffle compile
-  - darq-truffle migrate --reset --network ganache
-  - darq-truffle test --network ganache
+  - darq-truffle migrate --reset --network travis
+  - darq-truffle test --network travis
 
 
