@@ -18,12 +18,17 @@ module.exports = function (deployer) {
             return deployer.deploy (Enigma, EnigmaToken.address, principal, {overwrite: false});
         })
         .then(() => {
-            console.log('Enigma Contract address is: ' + Enigma.address);
-            // Writing enigma contract to a file for other processes to retrieve
+            // Writing enigma contracts to a file for other processes to retrieve
             fs.writeFile('enigmacontract.txt', Enigma.address, 'utf8', function(err) {
                 if(err) {
                     return console.log(err);
                 }
             });
+            fs.writeFile('enigmatokencontract.txt', EnigmaToken.address, 'utf8', function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+            });
+
         })
 };
