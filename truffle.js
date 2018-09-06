@@ -12,16 +12,17 @@ module.exports = {
             port: 9545,
             network_id: '1' // Match any network id
         },
-        // This network section is needed for travis-ci, do not remove
-        ganache: {
-            host: "127.0.0.1",
+        // This network section is needed for travis-ci, do not change
+        travis: {
+            host: 'localhost',
             port: 8545,
-            network_id: "2"
+            network_id: '*'
         },
+        ganache: { host: "172.23.0.2", port: 8545, network_id: "*"},
         // This network section is needed for travis-ci, do not remove
-        ganache_remote: {
+        enigma: {
             host: "localhost",
-            port: 30000,
+            port: 8546,
             network_id: "3"
         }
     },
