@@ -24,6 +24,13 @@ module.exports = {
             host: "localhost",
             port: 8546,
             network_id: "3"
+        },
+        coverage: {
+            host: 'localhost',
+            network_id: '*',
+            port: 8555,
+            gas: 0xfffffffffff,
+            gasPrice: 0x01,
         }
     },
     solc: {
