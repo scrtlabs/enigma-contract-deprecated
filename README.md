@@ -1,3 +1,5 @@
+# The code has been moved to a new repository: https://github.com/enigmampc/enigma-contract
+
 # enigma-contract
 
 [![Build Status](https://travis-ci.com/enigmampc/enigma-contract.svg?token=cNBBjbVVEGszuAJUokFT&branch=master)](https://travis-ci.com/enigmampc/enigma-contract)
